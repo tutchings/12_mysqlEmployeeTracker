@@ -39,6 +39,70 @@ class Inquire {
         ]);
     }
 
+    update(employeeList, employeeRecordList) {
+        return inquirer.prompt([
+            {
+                type: 'list',
+                message: 'Select the ID of the employee whose records you want to update: ',
+                name: 'selectedEmployee',
+                choices: employeeList
+            },
+            {
+                type: 'list',
+                message: 'Select the record you want to update: ',
+                name: 'selectedRecord',
+                choices: employeeRecordList
+            }
+        ]);
+    }
+
+    updateFirstName() {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the updated first name for this employee: ',
+                name: 'updatedFirstName',
+            }
+        ]);
+    }
+
+    updateLastName() {
+
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the updated last name for this employee: ',
+                name: 'updatedLastName',
+            }
+        ]);
+
+    }
+
+    updateRoleId() {
+
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the updated role id for this employee: ',
+                name: 'updatedRoleId',
+            }
+        ]);
+
+    }
+
+    updateManagerId() {
+
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the updated manager id for this employee: ',
+                name: 'updatedManagerId',
+            }
+        ]);
+
+    }
+
+
 
 }
 
