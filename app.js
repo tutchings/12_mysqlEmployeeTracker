@@ -55,12 +55,19 @@ const addCase = () => {
 
             switch (answer.addResponse) {
                 case "Department":
+                    addDepartment();
+                    break;
 
                 case "Role":
+                    addRole();
+                    break;
 
                 case "Employee":
+                    addEmployee();
+                    break;
 
                 case "Cancel":
+                    runApp();
                     break;
 
             }
@@ -173,5 +180,18 @@ const updateEmployee = (id, parameter, updatedValue) => {
 
     });
 
-
 };
+
+const addDepartment = () => {
+    inquire.department()
+        .then ((answer) => {
+
+            connection.query(`INSERT INTO department (name) VALUES '${answer.newDepartment}'`, function(err, res) {
+                if (err) throw err;
+
+                
+            });
+
+
+        });
+}

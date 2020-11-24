@@ -102,6 +102,16 @@ class Inquire {
 
     }
 
+    department() {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the name of the department to add: ',
+                name: 'newDepartment'
+            }
+        ]);
+    }
+
 
 
 }
