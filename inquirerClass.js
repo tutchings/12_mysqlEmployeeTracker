@@ -1,9 +1,10 @@
 const inquirer = require("inquirer");
 
 class Inquire {
-    constructor(initialOptions, tableOptions) {
+    constructor(initialOptions, tableOptions, deleteOptions) {
         this.initialOptions = initialOptions;
         this.tableOptions = tableOptions;
+        this.deleteOptions = deleteOptions;
     }
 
     initialQuery() {
@@ -28,6 +29,17 @@ class Inquire {
         ]);
     }
 
+    delete() {
+        return inquirer.prompt([
+            {
+                type: 'list',
+                message: 'What do you want to delete: ',
+                name: 'deleteResponse',
+                choices: this.deleteOptions
+            }
+        ]);
+    }
+
     view(viewOptions) {
         return inquirer.prompt([
             {
@@ -38,6 +50,18 @@ class Inquire {
             }
         ]);
     }
+
+
+    deleteOneEmployee() {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the ID of the employee whose records you want to delete: ',
+                name: 'chosenEmployee'
+            }
+        ]);
+    }
+
 
     update(employeeList, employeeRecordList) {
         return inquirer.prompt([

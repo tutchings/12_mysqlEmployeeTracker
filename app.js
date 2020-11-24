@@ -4,11 +4,12 @@ var inquirer = require('inquirer');
 const Inquire = require("./inquirerClass");
 
 let exitProgram = false;
-let initialResponseOptions = ["Add Department, Role, or Employee", "View Departments, Roles, Employees, or All Records", "Update Employee", "Exit"];
+let initialResponseOptions = ["Add Department, Role, or Employee", "View Departments, Roles, Employees, or All Records", "Update Employee", "Delete Employee", "Exit"];
 let tableOptions = ["Department", "Role", "Employee", "Cancel"];
+let deleteOptions = ["Delete One Employee", "Delete All Employees", "Cancel"];
 let employeeRecordList = ["first_name", "last_name", "role_id", "manager_id", "cancel"];
 
-const inquire = new Inquire(initialResponseOptions, tableOptions);
+const inquire = new Inquire(initialResponseOptions, tableOptions, deleteOptions);
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -37,6 +38,10 @@ const runApp = () => {
                 
                 case "Update Employee":
                     updateCase();
+                    break;
+
+                case "Delete Employee":
+                    deleteCase();
                     break;
 
                 case "Exit":
@@ -76,6 +81,80 @@ const addCase = () => {
         });
 
 };
+
+const deleteCase = () => {
+
+        inquire.delete()
+            .then((answer) => {
+
+                switch(answer.deleteResponse) {
+                    case "Delete One Employee":
+                        deleteOne();
+                        break;
+
+                    case "Delete All Employees":
+                        deleteAll()
+                        break;
+
+                    case "Cancel":
+                        runApp();
+                        break;
+
+                }
+
+            });
+
+};
+
+
+const deleteOne = () => {
+    connection.query(`SELECT id, first_name, last_name FROM employee;`, function(err, res) {
+        if (err) throw err;
+
+        console.table(res);
+
+        inquire.deleteOneEmployee()
+            .then((answer) => {
+
+                connection.query(`DELETE FROM employee WHERE id = ${answer.chosenEmployee};`, function(err, res) {
+                    if (err) throw err;
+
+                    console.log(`${answer.chosenEmployee} successfully deleted`);
+
+                    runApp();
+                });
+
+            });
+    });
+};
+
+
+const deleteAll = () => {
+    connection.query("SELECT id FROM employee;", function(err, res) {
+        if (err) throw err;
+
+        const idArray = [];
+
+        res.forEach(object => {
+
+            idArray.push(object.id);
+            
+        });
+
+        const idString = idArray.join(', ');
+        
+        connection.query(`DELETE FROM employee WHERE id IN (${idString});`, function(err, res) {
+            if (err) throw err;
+
+            console.log("All employee records successfully deleted");
+
+            runApp();
+        });
+
+    });
+
+}
+
 
 const viewCase = () => {
 
@@ -161,21 +240,37 @@ const updateCase = () => {
 
                     case "role_id":
 
-                        inquire.updateRoleId()
-                            .then((value) => {
-                                updateEmployee(answer.selectedEmployee, answer.selectedRecord, value.updatedRoleId);
-                            })
+                        connection.query('SELECT id, title FROM role;', function(err, res) {
+                            if (err) throw err;
+
+                            console.table(res);
+
+
+                            inquire.updateRoleId()
+                                .then((value) => {
+                                    updateEmployee(answer.selectedEmployee, answer.selectedRecord, value.updatedRoleId);
+                                });
+
+                        });
 
                         break;
 
                     case "manager_id":
 
-                        inquire.updateManagerId()
-                            .then((value) => {
-                                updateEmployee(answer.selectedEmployee, answer.selectedRecord, value.updatedManagerId);
-                            })
+                        connection.query('SELECT id, first_name, last_name FROM employee;', function(err, res) {
+                            if (err) throw err;
+
+                            console.table(res);
+
+                            inquire.updateManagerId()
+                                .then((value) => {
+                                    updateEmployee(answer.selectedEmployee, answer.selectedRecord, value.updatedManagerId);
+                                });
+
+                        });
 
                         break;
+
 
                     case "cancel":
                         runApp();
