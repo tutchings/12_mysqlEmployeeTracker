@@ -4,7 +4,7 @@ var inquirer = require('inquirer');
 const Inquire = require("./inquirerClass");
 
 let exitProgram = false;
-let initialResponseOptions = ["Add Department, Role, or Employee", "View Departments, Roles, or Employees", "Update Employee", "Exit"];
+let initialResponseOptions = ["Add Department, Role, or Employee", "View Departments, Roles, Employees, or All Records", "Update Employee", "Exit"];
 let tableOptions = ["Department", "Role", "Employee", "Cancel"];
 let employeeRecordList = ["first_name", "last_name", "role_id", "manager_id", "cancel"];
 
@@ -31,7 +31,7 @@ const runApp = () => {
                     addCase();
                     break;
                 
-                case "View Departments, Roles, or Employees":
+                case "View Departments, Roles, Employees, or All Records":
                     viewCase();
                     break;
                 
@@ -226,45 +226,62 @@ const addDepartment = () => {
 };
 
 const addRole = () => {
-    inquire.role()
-        .then((answer) => {
 
-            connection.query(`INSERT INTO role (title, salary, department_id) VALUES ('${answer.newRole}', ${answer.newSalary}, ${answer.newDepartmentId});`, function(err, res) {
-                if (err) throw err;
-                console.log("New role successfuly added");
+    connection.query('SELECT * FROM department;', function(err, res) {
+        if (err) throw err;
 
-                connection.query(`SELECT * FROM role WHERE title = '${answer.newRole}';`, function(err, res) {
+        console.table(res);
+
+        inquire.role()
+            .then((answer) => {
+
+                connection.query(`INSERT INTO role (title, salary, department_id) VALUES ('${answer.newRole}', ${answer.newSalary}, ${answer.newDepartmentId});`, function(err, res) {
                     if (err) throw err;
+                    console.log("New role successfuly added");
 
-                    console.table(res);
+                    connection.query(`SELECT * FROM role WHERE title = '${answer.newRole}';`, function(err, res) {
+                        if (err) throw err;
 
-                    runApp();
+                        console.table(res);
+
+                        runApp();
+                    });
+
                 });
-
             });
-        })
+
+    });
+
 };
 
 
 const addEmployee = () => {
 
-    inquire.employee()
-        .then((answer) => {
+    connection.query('SELECT id, title FROM role;', function(err, res) {
+        if (err) throw err;
 
-            connection.query(`INSERT INTO employee (first_name, last_name, role_id) VALUES ('${answer.newFirstName}', '${answer.newLastName}', ${answer.newRoleId});`, function(err, res) {
-                if (err) throw err;
+        console.table(res);
 
-                console.log("New employee successfully added");
+        inquire.employee()
+            .then((answer) => {
 
-                connection.query(`SELECT * FROM employee WHERE first_name = '${answer.newFirstName}' AND last_name = '${answer.newLastName}';`, function(err, res) {
+                connection.query(`INSERT INTO employee (first_name, last_name, role_id) VALUES ('${answer.newFirstName}', '${answer.newLastName}', ${answer.newRoleId});`, function(err, res) {
                     if (err) throw err;
 
-                    console.table(res);
+                    console.log("New employee successfully added");
 
-                    runApp();
+                    connection.query(`SELECT * FROM employee WHERE first_name = '${answer.newFirstName}' AND last_name = '${answer.newLastName}';`, function(err, res) {
+                        if (err) throw err;
+
+                        console.table(res);
+
+                        runApp();
+                    });
                 });
             });
-        });
+
+    });
+
 };
 
 const viewTables = (table) => {
