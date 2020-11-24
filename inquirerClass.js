@@ -28,13 +28,13 @@ class Inquire {
         ]);
     }
 
-    view() {
+    view(viewOptions) {
         return inquirer.prompt([
             {
                 type: 'list',
                 message: 'What do you want to view: ',
                 name: 'viewResponse',
-                choices: this.tableOptions
+                choices: viewOptions
             }
         ]);
     }
@@ -108,6 +108,46 @@ class Inquire {
                 type: 'input',
                 message: 'Enter the name of the department to add: ',
                 name: 'newDepartment'
+            }
+        ]);
+    }
+
+    role() {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the name of the role to add: ',
+                name: 'newRole'
+            },
+            {
+                type: 'input',
+                message: 'Enter the salary for the new role',
+                name: 'newSalary'
+            },
+            {
+                type: 'input',
+                message: 'Enter the department id for the new role',
+                name: 'newDepartmentId'
+            }
+        ]);
+    }
+
+    employee() {
+        return inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Enter the first name of the employee to add',
+                name: 'newFirstName'
+            },
+            {
+                type: 'input',
+                message: 'Enter the last name of the employee to add',
+                name: 'newLastName'
+            },
+            {
+                type: 'input',
+                message: 'Enter the role id of the employee to add',
+                name: 'newRoleId'
             }
         ]);
     }
