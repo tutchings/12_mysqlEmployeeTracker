@@ -2,6 +2,26 @@
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.
 
+<br />
+
+
+## Installation and Usage Instructions
+
+1. Navigate to the project repo: [MySQL Employee Tracker](https://github.com/tutchings/12_mysqlEmployeeTracker);
+
+2. Download the zip folder of the project files
+
+3. Save the files to computer and unzip
+
+4. Open a terminal and navigate to the project folder within the terminal
+
+5. Once at the project folder within the terminal, enter "npm i" to install all dependencies for the project
+
+6. Once the dependencies have been downloaded, enter "node app.js" in the terminal to run the program
+
+<br />
+
+
 ## Instructions
 
 Design the following database schema containing three tables:

@@ -138,7 +138,7 @@ const deleteOne = () => {
                 connection.query(`DELETE FROM employee WHERE id = ${answer.chosenEmployee};`, function(err, res) {
                     if (err) throw err;
 
-                    console.log(`${answer.chosenEmployee} successfully deleted`);
+                    console.log(`Employee ${answer.chosenEmployee} successfully deleted`);
 
                     runApp();
                 }); //end DELETE sql query
