@@ -28,35 +28,35 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 
 ### 1. Installation Demo
 
-![Installation Demo](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+![Installation Demo](https://github.com/tutchings/12_mysqlEmployeeTracker/blob/master/examples/1-installation.gif)
 
 <br />
 
 
 ### 2. Add Department, Role, and Employee Demo
 
-![Add Department, Role, and Employee Demo](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+![Add Department, Role, and Employee Demo](https://github.com/tutchings/12_mysqlEmployeeTracker/blob/master/examples/2-addExample.gif)
 
 <br />
 
 
 ### 3. View All Records Example
 
-![View All Records Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+![View All Records Example](https://github.com/tutchings/12_mysqlEmployeeTracker/blob/master/examples/3-viewExample.gif)
 
 <br />
 
 
 ### 4. Update Employee Example
 
-![Update Employee Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+![Update Employee Example](https://github.com/tutchings/12_mysqlEmployeeTracker/blob/master/examples/4-updateExample.gif)
 
 <br />
 
 
 ### 5. Delete Employee Example
 
-![Delete Employee Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+![Delete Employee Example](https://github.com/tutchings/12_mysqlEmployeeTracker/blob/master/examples/5-deleteExample.gif)
 
 <br />
 
