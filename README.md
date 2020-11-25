@@ -22,6 +22,45 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 <br />
 
 
+## DEMOS
+
+<br />
+
+### 1. Installation Demo
+
+![Installation Demo](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+
+<br />
+
+
+### 2. Add Department, Role, and Employee Demo
+
+![Add Department, Role, and Employee Demo](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+
+<br />
+
+
+### 3. View All Records Example
+
+![View All Records Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+
+<br />
+
+
+### 4. Update Employee Example
+
+![Update Employee Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+
+<br />
+
+
+### 5. Delete Employee Example
+
+![Delete Employee Example](https://github.com/tutchings/10_employeeTeamProfileGenerator/blob/master/demos/installation.gif)
+
+<br />
+
+
 ## Instructions
 
 Design the following database schema containing three tables:
@@ -86,7 +125,6 @@ How do you deliver this? Here are some guidelines:
 
 * You will need to perform a variety of SQL JOINS to complete this assignment, and it's recommended you review the week's activities if you need a refresher on this.
 
-![Employee Tracker](Assets/employee-tracker.gif)
 
 ### Hints
 
